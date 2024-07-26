@@ -207,9 +207,31 @@ bool checkWinner(void)
                     abort();
                 }
             }
-            else if (positions[0][0] == positions[1][1] && positions[0][j] == positions[2][2])
+            else if (positions[0][0] == positions[1][1] && positions[0][0] == positions[2][2])
             {
-                if (positions[i][0] == 'x')
+                if (positions[0][0] == 'x')
+                {
+                    cout << endl
+                         << "---------------------------------------------------------" << endl;
+                    cout << player1 << " WINS !!";
+                    cout << endl
+                         << "---------------------------------------------------------" << endl;
+                    abort();
+                }
+
+                else
+                {
+                    cout << endl
+                         << "---------------------------------------------------------" << endl;
+                    cout << player2 << " WINS !!";
+                    cout << endl
+                         << "---------------------------------------------------------" << endl;
+                    abort();
+                }
+            }
+            else if (positions[0][2]==positions[1][1] && positions[0][2]== positions[2][0])
+            {
+                 if (positions[0][2] == 'x')
                 {
                     cout << endl
                          << "---------------------------------------------------------" << endl;
