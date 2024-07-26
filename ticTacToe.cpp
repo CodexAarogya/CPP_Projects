@@ -1,6 +1,8 @@
 #include <iostream>
 #include <stdlib.h>
 #include <iomanip>
+#include<windows.h>
+#include<stdio.h>
 using namespace std;
 char positions[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
 string player1;
@@ -9,6 +11,26 @@ int turn, test_draw;
 bool draw;
 char playerChoice = 'x';
 int row, coln;
+
+void loadingBar(void)
+{   char element1=176, element2=219;
+    system("COLOR 0e");
+    system("cls");
+    cout<<"\t\tLOADING .........."<<endl;
+    cout<<"\t\t";
+    for(int i=0; i<50;i++)
+    {
+        cout<<element1;
+    }
+    cout<<"\r";
+    cout<<"\t\t";
+    for(int i=0;i<50;i++)
+    {   
+        cout<<element2;
+        Sleep(30);
+    }
+}
+
 void intro(void)
 {
     for (int i = 0; i < 101; i++)
@@ -28,6 +50,7 @@ void intro(void)
         cout << "_";
     cout << endl;
 }
+
 void initialData(void)
 {
     cout << "Enter Name of Player 1: ";
@@ -38,8 +61,10 @@ void initialData(void)
     cout << "---------------------------------------------------------" << endl;
     cout << endl;
 }
+
 void mainStructure(void)
 {
+    system("color 0e");
     cout << endl;
     cout << "     |      |      " << endl;
     cout << "  " << positions[0][0] << "  |   " << positions[0][1] << "  |   " << positions[0][2] << "  " << endl;
@@ -53,10 +78,10 @@ void mainStructure(void)
          << endl;
     cout << "____________________________________________" << endl;
 }
+
 void gameBody(void)
 {
     int choice;
-
     if (playerChoice == 'x')
     {
         cout << endl;
@@ -131,7 +156,7 @@ void gameBody(void)
         break;
     }
     default:
-    {
+    {   system("color 04");
         cout << "Invalid Position !!" << endl;
         abort();
     }
@@ -148,14 +173,16 @@ void gameBody(void)
         playerChoice = 'x';
     }
     else
-    {
+    {   
+       
         cout << endl
              << "---------------------------------------------------------" << endl;
-        cout << "Space " << choice << " is already occupied !!" << endl;
+        cout<< "Space " << choice << " is already occupied !!" << endl;
         cout << "---------------------------------------------------------" << endl;
         draw = true;
     }
 }
+
 bool checkWinner(void)
 {
     int i, j;
@@ -166,7 +193,8 @@ bool checkWinner(void)
             if (positions[i][0] == positions[i][1] && positions[i][0] == positions[i][2])
             {
                 if (positions[i][0] == 'x')
-                {
+                {   
+                    system("color 04");
                     cout << endl
                          << "---------------------------------------------------------" << endl;
                     cout << player1 << " WINS !!";
@@ -177,6 +205,7 @@ bool checkWinner(void)
 
                 else
                 {
+                     system("color 04");
                     cout << endl
                          << "---------------------------------------------------------" << endl;
                     cout << player2 << " WINS !!";
@@ -189,6 +218,7 @@ bool checkWinner(void)
             {
                 if (positions[i][0] == 'x')
                 {
+                     system("color 04");
                     cout << endl
                          << "---------------------------------------------------------" << endl;
                     cout << player1 << " WINS !!";
@@ -199,6 +229,7 @@ bool checkWinner(void)
 
                 else
                 {
+                     system("color 04");
                     cout << endl
                          << "---------------------------------------------------------" << endl;
                     cout << player2 << " WINS !!";
@@ -209,6 +240,7 @@ bool checkWinner(void)
             }
             else if (positions[0][0] == positions[1][1] && positions[0][0] == positions[2][2])
             {
+                 system("color 04");
                 if (positions[0][0] == 'x')
                 {
                     cout << endl
@@ -221,6 +253,7 @@ bool checkWinner(void)
 
                 else
                 {
+                     system("color 04");
                     cout << endl
                          << "---------------------------------------------------------" << endl;
                     cout << player2 << " WINS !!";
@@ -233,6 +266,7 @@ bool checkWinner(void)
             {
                  if (positions[0][2] == 'x')
                 {
+                     system("color 04");
                     cout << endl
                          << "---------------------------------------------------------" << endl;
                     cout << player1 << " WINS !!";
@@ -243,6 +277,7 @@ bool checkWinner(void)
 
                 else
                 {
+                     system("color 04");
                     cout << endl
                          << "---------------------------------------------------------" << endl;
                     cout << player2 << " WINS !!";
@@ -267,7 +302,9 @@ bool checkWinner(void)
         {
             if (positions[i][j] == 'x' && positions[i][j] == 'O' && draw == true)
             {
+                 system("color 04");
                 cout << " GAME IS DRAW !!!";
+                return draw;
                 abort();
             }
         }
@@ -277,8 +314,11 @@ bool checkWinner(void)
 
 int main()
 {
+    loadingBar();
+    cout<<endl;
     intro();
     cout << endl;
+    cout<<endl;
     initialData();
     do
     {
